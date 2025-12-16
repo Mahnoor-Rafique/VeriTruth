@@ -1,32 +1,25 @@
-# Use official Node.js LTS as base image
+# Use official Node.js LTS image
 FROM node:20-slim
 
-# Set working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy server package files first (for caching dependencies)
+# Copy package files first (better caching)
 COPY server/package*.json ./server/
 
-# Install server dependencies
+# Install dependencies
 WORKDIR /app/server
-RUN npm install
+RUN npm install --production
 
-# Copy all server files
+# Copy server source code
 COPY server/ ./server/
 
-# If you have a client folder (React frontend), copy and build it
-# Uncomment these lines if using React
-# COPY client/package*.json ./client/
-# WORKDIR /app/client
-# RUN npm install
-# RUN npm run build
-
-# Set environment variables
+# Hugging Face required port
 ENV PORT=7860
+ENV HOST=0.0.0.0
 
-# Expose the port Hugging Face uses
+# Expose HF port
 EXPOSE 7860
 
-# Start your server
-WORKDIR /app/server
+# Start server
 CMD ["node", "server.js"]

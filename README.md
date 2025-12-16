@@ -1,11 +1,14 @@
 ---
-sdk: docker
-app_port: 7860
 title: VeriTruth
-emoji: 🚀
-colorFrom: green
-colorTo: blue
+emoji: 🕵️‍♂️
+colorFrom: indigo
+colorTo: green
+sdk: docker
 pinned: false
 ---
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+# VeriTruth – AI Content Verification System
+
+This is a Docker-based Hugging Face Space that runs:
+- Node.js backend
+- AI-powered content verification API
